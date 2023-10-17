@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css'
+import List from './components/List';
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 const API_SECRET = import.meta.env.VITE_APP_API_SECRET;
@@ -18,8 +19,7 @@ function App() {
         method: "POST"
       })
       const data = await resp.json();
-      
-      console.log(data.access_token);
+    
       return data.access_token
       }
     
@@ -51,11 +51,7 @@ function App() {
   
   return (
     <>
-      {animalList ? 
-        animalList.map(animal => {
-          return <li>{animal.name}, {animal.age}, {animal.species}</li>
-        }) : <div></div>
-      }
+      {animalList ? <List animalList={animalList} /> : <div></div>}
     </>
   )
 }
