@@ -9,13 +9,13 @@ const List = ({ animalList }) => {
             <th>Age</th>
             <th>Attributes</th>
           </tr>
-          {animalList.map(animal => {
+          {animalList.map(({species, name, age, attributes}) => {
             return <tr>
-              <td>{animal.species}</td>
-              <td>{animal.name}</td>
-              <td>{animal.age}</td>
-              <td>{Object.keys(animal.attributes).map(attribute => {
-                return <li>{attribute.replace("_", " ")}: {animal.attributes[attribute] ? "Y" : "N"}</li>
+              <td>{species}</td>
+              <td>{name}</td>
+              <td>{age}</td>
+              <td>{Object.keys(attributes).map(attribute => {
+                return <li>{attribute.replace("_", " ")}: {attributes[attribute] ? "Y" : "N"}</li>
               })}</td>
             </tr>
           })}
