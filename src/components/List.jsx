@@ -1,12 +1,4 @@
-import { useState } from "react";
-
-const List = ({ animalList }) => {
-  const [toSearch, setSearch] = useState("");
-
-  const handleChange = (event) => {
-    setSearch(event.target.value);
-  };
-
+const List = ({ animalList, handleChange }) => {
   return (
     <>
       <input
@@ -23,7 +15,6 @@ const List = ({ animalList }) => {
             <th>Attributes</th>
           </tr>
           {animalList
-            .filter(({ name }) => name.includes(toSearch))
             .map(({ species, name, age, gender, attributes }) => {
               return (
                 <tr>

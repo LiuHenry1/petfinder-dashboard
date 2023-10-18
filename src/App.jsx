@@ -8,7 +8,8 @@ const API_SECRET = import.meta.env.VITE_APP_API_SECRET;
 
 function App() {
   let token = null;
-  const [animalList, setAnimalList] = useState(null);
+  const [animalList, setAnimalList] = useState(null); // the entire list
+  const [listToDisplay, setListToDisplay] = useState(null); // subset of entire list
 
   useEffect(() => {
     const getToken = async () => {
@@ -41,20 +42,29 @@ function App() {
       const animals = await getAnimals();
 
       setAnimalList(animals);
+      setListToDisplay(animals);
       console.log(animals);
     };
     fetchData();
   }, []);
+
+  const handleSearchChange = (event) => {
+    const filteredList = animalList.filter(({ name }) => name.includes(event.target.value));
+    setListToDisplay(filteredList);
+  };
 
   return (
     <>
       <h1>Pet Finder Dashboard</h1>
       {animalList ? (
         <div>
-          <Stat type="Number of results" value={animalList.length} />
+          <Stat type="Number of results" value={listToDisplay.length} />
           <Stat type="Location" value="Set to none" />
           <Stat type="Type" value="All" />
-          <List animalList={animalList} />
+          <List
+            animalList={listToDisplay}
+            handleChange={handleSearchChange}
+          />
         </div>
       ) : (
         <div></div>
