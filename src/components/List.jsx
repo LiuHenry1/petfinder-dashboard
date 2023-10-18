@@ -14,27 +14,30 @@ const List = ({ animalList, handleChange }) => {
             <th>Age</th>
             <th>Attributes</th>
           </tr>
-          {animalList
-            .map(({ species, name, age, gender, attributes }) => {
-              return (
-                <tr>
-                  <td>{species}</td>
-                  <td>{name}</td>
-                  <td>{age}</td>
-                  <td>{gender}</td>
-                  <td>
-                    {Object.keys(attributes).map((attribute) => {
-                      return (
-                        <li>
-                          {attribute.replace("_", " ")}:{" "}
-                          {attributes[attribute] ? "Y" : "N"}
-                        </li>
-                      );
-                    })}
-                  </td>
-                </tr>
-              );
-            })}
+          {animalList.map(({ type, name, age, gender, attributes, url }) => {
+            return (
+              <tr>
+                <td>{type}</td>
+                <td>
+                  <a href={url} target="blank">
+                    {name}
+                  </a>
+                </td>
+                <td>{age}</td>
+                <td>{gender}</td>
+                <td>
+                  {Object.keys(attributes).map((attribute) => {
+                    return (
+                      <li>
+                        {attribute.replace("_", " ")}:{" "}
+                        {attributes[attribute] ? "Y" : "N"}
+                      </li>
+                    );
+                  })}
+                </td>
+              </tr>
+            );
+          })}
         </thead>
       </table>
     </>
