@@ -10,6 +10,12 @@ function App() {
   let token = null;
   const [animalList, setAnimalList] = useState(null); // the entire list
   const [listToDisplay, setListToDisplay] = useState(null); // subset of entire list
+  const [filter, setFilter] = useState({
+    toSearch: "",
+    type: "All",
+    age: "All",
+    gender: "All",
+  });
 
   useEffect(() => {
     const getToken = async () => {
@@ -26,11 +32,14 @@ function App() {
     };
 
     const getAnimals = async () => {
-      const resp = await fetch("https://api.petfinder.com/v2/animals", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const resp = await fetch(
+        "https://api.petfinder.com/v2/animals?limit=100",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await resp.json();
 
@@ -43,15 +52,48 @@ function App() {
 
       setAnimalList(animals);
       setListToDisplay(animals);
-      console.log(animals);
     };
     fetchData();
   }, []);
 
-  const handleSearchChange = (event) => {
-    const filteredList = animalList.filter(({ name }) => name.includes(event.target.value));
-    setListToDisplay(filteredList);
+  const updateFilter = (e) => {
+    const updatedFilter = {
+      ...filter,
+      [e.target.id]: e.target.value,
+    };
+
+    setFilter(updatedFilter);
   };
+
+  useEffect(() => {
+    if (animalList === null) return;
+
+    let filteredList = animalList;
+
+    if (filter.type != "All") {
+      filteredList = filteredList.filter(
+        (animal) => animal.type === filter.type
+      );
+    }
+
+    if (filter.age != "All") {
+      filteredList = filteredList.filter((animal) => animal.age === filter.age);
+    }
+
+    if (filter.gender != "All") {
+      filteredList = filteredList.filter(
+        (animal) => animal.gender === filter.gender
+      );
+    }
+
+    if (filter.toSearch != "") {
+      filteredList = filteredList.filter((animal) =>
+        animal.name.toLowerCase().includes(filter.toSearch.toLowerCase())
+      );
+    }
+
+    setListToDisplay(filteredList);
+  }, [filter]);
 
   return (
     <>
@@ -61,10 +103,7 @@ function App() {
           <Stat type="Number of results" value={listToDisplay.length} />
           <Stat type="Location" value="Set to none" />
           <Stat type="Type" value="All" />
-          <List
-            animalList={listToDisplay}
-            handleChange={handleSearchChange}
-          />
+          <List animalList={listToDisplay} handleChange={updateFilter} />
         </div>
       ) : (
         <div></div>
