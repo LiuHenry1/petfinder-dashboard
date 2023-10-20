@@ -97,15 +97,19 @@ function App() {
 
   return (
     <>
-      <h1>Pet Finder Dashboard</h1>
+      <div className="header">
+        <h1>Pet Finder Dashboard</h1>
+      </div>
       {animalList ? (
-        <div>
-          <Stat type="Number of results" value={listToDisplay.length} />
-          <Stat type="Location" value="Chicago" />
-          <Stat
-            type="Search for "
-            value={`Type:${filter.type} Gender:${filter.gender}, Age:${filter.age}`}
-          />
+        <div className="main">
+          <div className="summary">
+            <Stat type="Number of results" value={listToDisplay.length} />
+            <Stat type="Location" value="Chicago" />
+            <Stat
+              type="Search for "
+              value={`Type:${filter.type}, Gender:${filter.gender}, Age:${filter.age}`}
+            />
+          </div>
           <List animalList={listToDisplay} handleChange={updateFilter} />
         </div>
       ) : (
