@@ -1,42 +1,51 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: auto;
+  width: 95%;
+}
+
+.header {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.summary {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.stat {
+  text-align: center;
 }
 
-.card {
-  padding: 2em;
+.list {
+  table-layout: fixed;
+  border: 1px solid lightgray;
+  border-collapse: collapse;
 }
 
-.read-the-docs {
-  color: #888;
+.list td {
+  text-align: center;
+}
+
+tr {
+  border-bottom: 1px solid lightgray;
+}
+
+.td-name, .td-type, .td-age, .td-gender {
+  width: 15%;
+}
+
+td li{
+  list-style: none;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
 }
