@@ -21,6 +21,11 @@ const List = ({ animalList, handleChange }) => {
         <option value="Adult">Adult</option>
         <option value="Senior">Senior</option>
       </select>
+      <select id="gender" onChange={handleChange}>
+        <option value="All">All</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
       <table>
         <thead>
           <tr>
