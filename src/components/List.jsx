@@ -3,9 +3,17 @@ const List = ({ animalList, handleChange }) => {
     <>
       <input
         type="text"
+        id="toSearch"
         onChange={handleChange}
         placeholder="Enter name..."
       ></input>
+      <select id="type" onChange={handleChange}>
+        <option value="All">All</option>
+        <option value="Dog">Dogs</option>
+        <option value="Cat">Cats</option>
+        <option value="Bird">Birds</option>
+        <option value="Rabbit">Rabbits</option>
+      </select>
       <table>
         <thead>
           <tr>
