@@ -33,7 +33,7 @@ function App() {
 
     const getAnimals = async () => {
       const resp = await fetch(
-        "https://api.petfinder.com/v2/animals?limit=100",
+        "https://api.petfinder.com/v2/animals?limit=100&location=Chicago, Illinois",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -101,8 +101,11 @@ function App() {
       {animalList ? (
         <div>
           <Stat type="Number of results" value={listToDisplay.length} />
-          <Stat type="Location" value="Set to none" />
-          <Stat type="Type" value="All" />
+          <Stat type="Location" value="Chicago" />
+          <Stat
+            type="Search for "
+            value={`Type:${filter.type} Gender:${filter.gender}, Age:${filter.age}`}
+          />
           <List animalList={listToDisplay} handleChange={updateFilter} />
         </div>
       ) : (
