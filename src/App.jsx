@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import List from "./components/List";
-import Stat from "./components/Stat";
+import Dashboard from "./components/Dashboard";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "../routes/Layout";
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 const API_SECRET = import.meta.env.VITE_APP_API_SECRET;
@@ -96,26 +97,22 @@ function App() {
   }, [filter]);
 
   return (
-    <>
-      <div className="header">
-        <h1>Pet Finder Dashboard</h1>
-      </div>
-      {animalList ? (
-        <div className="main">
-          <div className="summary">
-            <Stat type="Number of results" value={listToDisplay.length} />
-            <Stat type="Location" value="Chicago" />
-            <Stat
-              type="Search for "
-              value={`Type:${filter.type}, Gender:${filter.gender}, Age:${filter.age}`}
-            />
-          </div>
-          <List animalList={listToDisplay} handleChange={updateFilter} />
-        </div>
-      ) : (
-        <div></div>
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route
+            index={true}
+            element={
+              <Dashboard
+                listToDisplay={listToDisplay}
+                filter={filter}
+                updateFilter={updateFilter}
+              />
+            }
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
