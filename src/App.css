@@ -61,6 +61,6 @@ li{
   justify-content: space-between;
 }
 
-.main, .additional-info {
+.primary-info, .additional-info {
   width: 45%;
 }
