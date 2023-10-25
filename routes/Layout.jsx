@@ -1,12 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const Layout = () => {
   return (
     <>
       <div className="header">
-        <h1>Pet Finder Dashboard</h1>
+        <h1><Link to="/">Pet Finder Dashboard</Link></h1>
       </div>
-      <Outlet />
+      <div className="content">
+        <Outlet />
+      </div>
     </>
   );
 };
