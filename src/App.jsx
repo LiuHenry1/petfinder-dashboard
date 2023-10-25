@@ -19,20 +19,20 @@ function App() {
     gender: "All",
   });
 
+  const getToken = async () => {
+    const resp = await fetch("https://api.petfinder.com/v2/oauth2/token", {
+      body: `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${API_SECRET}`,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      method: "POST",
+    });
+    const data = await resp.json();
+
+    return data.access_token;
+  };
+
   useEffect(() => {
-    const getToken = async () => {
-      const resp = await fetch("https://api.petfinder.com/v2/oauth2/token", {
-        body: `grant_type=client_credentials&client_id=${API_KEY}&client_secret=${API_SECRET}`,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        method: "POST",
-      });
-      const data = await resp.json();
-
-      return data.access_token;
-    };
-
     const getAnimals = async () => {
       const resp = await fetch(
         "https://api.petfinder.com/v2/animals?limit=100&location=Chicago, Illinois",
@@ -55,6 +55,7 @@ function App() {
       setAnimalList(animals);
       setListToDisplay(animals);
     };
+
     fetchData();
   }, []);
 
@@ -66,6 +67,22 @@ function App() {
 
     setFilter(updatedFilter);
   };
+
+  const getAnimal = async(id) => {
+    let token = await getToken();
+    const resp = await fetch(
+      `https://api.petfinder.com/v2/animals/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await resp.json();
+    console.log(data);
+    return data.animal;
+  }
 
   useEffect(() => {
     if (animalList === null) return;
@@ -112,8 +129,8 @@ function App() {
             }
           />
           <Route
-            path="details/:index"
-            element={<AnimalDetail animalList={animalList} />}
+            path="details/:id"
+            element={<AnimalDetail getAnimal={getAnimal} />}
           />
         </Route>
       </Routes>
