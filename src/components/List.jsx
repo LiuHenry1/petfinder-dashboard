@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const List = ({ animalList, handleChange }) => {
   return (
     <>
@@ -47,13 +49,13 @@ const List = ({ animalList, handleChange }) => {
           </tr>
         </thead>
         <tbody>
-          {animalList.map(({ type, name, age, gender, attributes, url }) => {
+          {animalList.map(({ id, type, name, age, gender, attributes }) => {
             return (
               <tr>
                 <td className="td-name">
-                  <a href={url} target="blank">
+                  <Link to={`details/${id}`}>
                     {name}
-                  </a>
+                  </Link>
                 </td>
                 <td>{type}</td>
                 <td>{age}</td>
