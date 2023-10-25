@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
+import AnimalDetail from "./components/AnimalDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "../routes/Layout";
 
@@ -109,6 +110,10 @@ function App() {
                 updateFilter={updateFilter}
               />
             }
+          />
+          <Route
+            path="details/:index"
+            element={<AnimalDetail animalList={animalList} />}
           />
         </Route>
       </Routes>
