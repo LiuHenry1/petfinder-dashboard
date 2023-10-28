@@ -1,8 +1,8 @@
-# Web Development Project 5 - *Pet Finder Dashboard*
+# Web Development Project 6 - *Pet Finder Dashboard*
 
 Submitted by: **Henry Liu**
 
-This web app: **A site that utlizes Petfinder's API to display a list of pets available for adoption in Chicago.**
+This web app: **A site that utilizes Petfinder's API to display a list of pets available for adoption in the Chicago area.**
 
 Time spent: **10** hours spent in total
 
@@ -10,20 +10,15 @@ Time spent: **10** hours spent in total
 
 The following **required** functionality is completed:
 
-- [X] **The list displays a list of data fetched using an API call**
-- [X] **Data uses the useEffect React hook and async/await syntax**
-- [X] **The app dashboard includes at least three summary statistics about the data such as**
-  - [X] *Number of Results*
-  - [X] *Location*
-  - [X] *Search Filter*
-- [X] **A search bar allows the user to search for an item in the fetched data**
-- [X] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
+- [X] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
+- [X] **Clicking on an item in the list view displays more details about it**
+- [X] **Clicking on an item has a direct, unique link to that item's detail view page**
+
 
 The following **optional** features are implemented:
 
-- [X] Multiple filters can be applied simultaneously
-- [X] Filters use different input types such as a text input, a selection, or a slider
-- [ ] The user can enter specific bounds for filter values
+- [ ] The site's customized dashboard contains more content that explains what is interesting about the data
+- [ ] The site allows users to toggle between different data visualizations
 
 The following **additional** features are implemented:
 
@@ -33,7 +28,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/6Dw7e6I.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/DD0kdhb.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with LICEcap  
@@ -44,13 +39,9 @@ GIF created with LICEcap
 
 ## Notes
 
-Similar to the last project, I spent a huge portion of time going through the API documentation. 
-This time, the API was much more difficult to work with because their examples utilized cURL instead of fetch,
-but thankfully, I could use this [resource](https://kigiri.github.io/fetch/) to help translate cURL commands to fetch. 
-I also spent a huge chunk of time trying to implement the functionality to implement multiple filters simulatenously, but I finally
-understood this as one of the applications of useEffect. Overall, this project was challenging in the right amount, and I learned a lot.
-There's still a lot of room for improvement when it comes to writing cleaner and more organized code. 
-
+This project was very challenging. I realized I do not have a good understanding of useEffect() or
+asynchronous Javascript. I was on a time constraint, so the code is not very organized or modular. Would like to work
+on that for future projects.
 
 ## License
 
