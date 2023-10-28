@@ -1,5 +1,6 @@
 import List from "./List";
 import Stat from "./Stat";
+import Chart from "./Chart";
 
 
 const Dashboard = ({ listToDisplay, filter, updateFilter }) => {
@@ -14,6 +15,7 @@ const Dashboard = ({ listToDisplay, filter, updateFilter }) => {
               type="Search for "
               value={`Type:${filter.type}, Gender:${filter.gender}, Age:${filter.age}`}
             />
+            <Chart animalList={listToDisplay} />
           </div>
           <List animalList={listToDisplay} handleChange={updateFilter} />
         </div>
