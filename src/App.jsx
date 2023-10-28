@@ -44,14 +44,13 @@ function App() {
       );
 
       const data = await resp.json();
-
       return data.animals;
     };
 
     const fetchData = async () => {
       token = await getToken();
       const animals = await getAnimals();
-
+    
       setAnimalList(animals);
       setListToDisplay(animals);
     };
@@ -80,7 +79,6 @@ function App() {
     );
 
     const data = await resp.json();
-    console.log(data);
     return data.animal;
   }
 
